@@ -54,7 +54,7 @@ Ensure you have the following installed:
 
 ## Screenshots
 _Main Window_ <br>
-<img src="[https://i.imgur.com/Dk0OhfN.png](https://imgur.com/a/7Wtr2Vg)" alt="Main Window" width="300">
+<img src="https://imgur.com/gallery/main-window-7Wtr2Vg" alt="Main Window" width="300">
 
 
 ## Future Improvements
