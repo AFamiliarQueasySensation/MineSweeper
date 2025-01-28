@@ -1,0 +1,5 @@
+set(__QT_DEPLOY_TARGET_fmt_FILE C:/Users/vonha/VSCode Grantt/MineSweep/build/_deps/fmt-build/libfmtd.a)
+set(__QT_DEPLOY_TARGET_fmt_TYPE STATIC_LIBRARY)
+set(__QT_DEPLOY_TARGET_MineSweep_FILE C:/Users/vonha/VSCode Grantt/MineSweep/build/MineSweep.exe)
+set(__QT_DEPLOY_TARGET_MineSweep_TYPE EXECUTABLE)
+set(__QT_DEPLOY_TARGET_MineSweep_RUNTIME_DLLS C:/Qt/6.8.1/mingw_64/bin/Qt6Widgets.dll;C:/Qt/6.8.1/mingw_64/bin/Qt6Gui.dll;C:/Qt/6.8.1/mingw_64/bin/Qt6Core.dll)
