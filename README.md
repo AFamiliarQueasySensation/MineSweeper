@@ -54,7 +54,7 @@ Ensure you have the following installed:
 
 ## Screenshots
 _Main Window_ <br>
-<img src="https://imgur.com/gallery/main-window-7Wtr2Vg" alt="Main Window" width="300">
+<img src="https://cdn.discordapp.com/attachments/561769547745722379/1333921653796769853/image.png?ex=679aa6d9&is=67995559&hm=2df77aa5ea71f184e468efec681ac86d47ef612f204b4636dab9a40baf614563" alt="Main Window" width="300">
 
 
 ## Future Improvements
