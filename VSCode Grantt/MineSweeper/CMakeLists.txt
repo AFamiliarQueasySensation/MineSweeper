@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.2)
 
 project(MineSweep LANGUAGES CXX)
 
@@ -34,6 +34,5 @@ add_executable(MineSweep
     src/main.cpp
     src/pushbutton.cpp
     
-
 )
 target_link_libraries(MineSweep PRIVATE fmt::fmt Qt6::Core Qt6::Gui Qt6::Widgets)
