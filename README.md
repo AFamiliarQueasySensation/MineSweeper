@@ -30,9 +30,9 @@ A Fun and interactive mine sweeper game.
 
 ### Prerequisites
 Ensure you have the following installed:
-- C++21 or Higher
-- QT6.22 or higher GUI
-- CMake
+- C++17 or Higher
+- QT6.22GUI or Higher
+- CMake 3.2 or Higher
 
 ### Steps to Run Locally
 1. Clone this repository:
@@ -65,4 +65,4 @@ _Main Window_ <br>
 
 ---
 
-_**PetPal created by:** Grant Von Hagen_
+_**MineSweeper created by:** Grant Von Hagen_
