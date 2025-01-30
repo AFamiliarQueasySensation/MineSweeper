@@ -39,11 +39,15 @@ Ensure you have the following installed:
    ```bash
    git clone https://github.com/AFamiliarQueasySensation/MineSweeper
 
-2. Navigate to the project directory:
+2. Navigate to the project directory: (If not created make a new folder)
     ```bash
     cd MineSweeper/build
 3. Type "Cmake .." refering to the location of the CMakeLists.txt
-4. Run the newly created executable
+4. Type "make"
+5. Run the newly created executable:
+   ```bash
+    ./MineSweep
+
 **Main Class**: main.cpp <br>
 **Project**: MineSweep<br>
 
