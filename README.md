@@ -42,9 +42,13 @@ Ensure you have the following installed:
 2. Navigate to the project directory: (If not created make a new folder)
     ```bash
     cd MineSweeper/build
-3. Type "Cmake .." refering to the location of the CMakeLists.txt
-4. Type "make"
-5. Run the newly created executable:
+3. Compile using the location of CMakeLists.txt: 
+   ```bash
+    cmake ..
+5. Build:
+   ```bash
+    make
+7. Run the newly created executable:
    ```bash
     ./MineSweep
 
