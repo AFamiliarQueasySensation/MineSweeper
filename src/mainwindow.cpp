@@ -7,7 +7,7 @@
 #define LEN_HOR 30
 #define LEN_VER 16
 
-#define MAXIMUM (LEN_HOR * LEN_VER) // Last position in the map
+#define MAXIMUM (LEN_HOR * LEN_VER) // ALSO last position in the map
 
 #define BOMB_COUNT 99
 
@@ -39,57 +39,61 @@ MainWindow::MainWindow(QWidget *parent)
     connect(signalMapper, &QSignalMapper::mappedInt, this, &MainWindow::onLeftMouseClicked);
 }
 
-void MainWindow::loseMenu(){
+// Death Screne Message Box
+void MainWindow::loseMenu()
+{
     QMessageBox msgBox;
     msgBox.setText("You Died");
     msgBox.setInformativeText("Would you like to play again?");
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::Yes);
     int rec = msgBox.exec();
-    switch (rec) {
-        case QMessageBox::Yes:
-            restartGame();
-            break;
-        case QMessageBox::No:
-         
-            QApplication::quit();
-            break;
-        
+    switch (rec)
+    {
+    case QMessageBox::Yes:
+        restartGame();
+        break;
+    case QMessageBox::No:
+
+        QApplication::quit();
+        break;
     }
-    
 }
 
-void MainWindow::winMenu(){
+// Win Screne Message Box
+void MainWindow::winMenu()
+{
     QMessageBox msgBox;
     msgBox.setText("You Win!!");
     msgBox.setInformativeText("Would you like to play again?");
-    msgBox.setStandardButtons(QMessageBox:: Yes | QMessageBox::No);
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::Yes);
     int rec = msgBox.exec();
-    switch (rec){
-        case QMessageBox::Yes:
+    switch (rec)
+    {
+    case QMessageBox::Yes:
 
-            restartGame();
-            break;
-        case QMessageBox::No:
+        restartGame();
+        break;
+    case QMessageBox::No:
 
-            QApplication::quit();
-            break;
+        QApplication::quit();
+        break;
     }
 }
 
-//This clears everything in the game, and then remakes the bombs n stuff
-void MainWindow::restartGame(){
-    for (auto& i:push_button_map){
+// This clears everything in the game, and then remakes the bombs n stuff
+void MainWindow::restartGame()
+{
+    for (auto &i : push_button_map)
+    {
         i->initializeButton();
         i->setText("");
         i->setVisible(true);
-        }
+    }
     win_counter = 0;
     randomBombMaker();
 }
-
-
 
 // Generates random bombs on the grid
 void MainWindow::randomBombMaker()
@@ -161,52 +165,55 @@ void MainWindow::randomBombMaker()
     }
 }
 
-
-inline void MainWindow::checkWin(){
-    //You win menu
-    if (win_counter == (LEN_HOR * LEN_VER) - BOMB_COUNT){
+// Win by finding how many square and subtracting amount of bombs deployed
+inline void MainWindow::checkWin()
+{
+    // You win menu
+    if (win_counter == (LEN_HOR * LEN_VER) - BOMB_COUNT)
+    {
         winMenu();
     }
 }
 
-// Recursively finds all of the empty squares 
+// Recursively finds all of the empty squares
 void MainWindow::findOtherEmptySquares(int random)
 {
 
-    //Empty Squares
+    // Empty Squares
     if (push_button_map[random]->nearBombCount() == 0)
     {
-        if (!push_button_map[random]->isPressed()){
+        if (!push_button_map[random]->isPressed())
+        {
             win_counter++;
             push_button_map[random]->setPressed();
             checkWin();
-            //qDebug() << win_counter;
+            // qDebug() << win_counter;
         }
-        
     }
     // Bass
-    //You Pressed on a bomb
-    if (push_button_map[random]->getBombFlag()){
+    // You Pressed on a bomb
+    if (push_button_map[random]->getBombFlag())
+    {
         loseMenu();
         return;
     }
 
-    //More than one near bomb count
+    // More than one near bomb count
     if (push_button_map[random]->nearBombCount() > 0)
     {
-        if (!push_button_map[random]->isPressed()){
+        if (!push_button_map[random]->isPressed())
+        {
             win_counter++;
             push_button_map[random]->setPressed();
             checkWin();
         }
-        //qDebug() << win_counter;
+        // qDebug() << win_counter;
         return;
     }
-    
 
     else
     {
-        
+
         // UP
         if (random - LEN_HOR >= 0 && !push_button_map[random - LEN_HOR]->isPressed())
         {
@@ -256,14 +263,14 @@ void MainWindow::findOtherEmptySquares(int random)
 
 void MainWindow::onRightMouseClicked(int button_num)
 {
-    //qDebug() << button_num << " : Right mouse clicked";
+    // qDebug() << button_num << " : Right mouse clicked";
 }
 
 // From PushButtonReleaseevent Emitted into this, on left mouse button
 void MainWindow::onLeftMouseClicked(int button_num)
 {
 
-    //qDebug() << button_num << " : Left mouse clicked= " << push_button_map[button_num]->getFlagged();
+    // qDebug() << button_num << " : Left mouse clicked= " << push_button_map[button_num]->getFlagged();
     findOtherEmptySquares(button_num);
 }
 
@@ -280,6 +287,4 @@ void MainWindow::onLeftClicked0()
 
 MainWindow::~MainWindow()
 {
-   
-    
 }

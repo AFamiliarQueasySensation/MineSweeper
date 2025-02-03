@@ -38,70 +38,67 @@ void PushButton::setButtonGeometry(QPoint point)
     setGeometry(QRect(point, QSize(BUTTON_LEN, BUTTON_WID)));
 }
 
-//Doesn't do much
-void PushButton::mousePressEvent(QMouseEvent *event){}
+// Doesn't do much
+void PushButton::mousePressEvent(QMouseEvent *event) {}
 
 // Removes drop shadow when you release it
 void PushButton::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::RightButton)
     {
-        if (!getFlagged() && !isQuestioned()){
+        if (!getFlagged() && !isQuestioned())
+        {
             setFlagged();
             setText("F");
         }
-        else if (getFlagged() && !isQuestioned()){
+        else if (getFlagged() && !isQuestioned())
+        {
             setQuestioned();
             this->flagged = false;
             setText("?");
         }
-        else{
+        else
+        {
             this->questioned = false;
             setText("");
         }
-
     }
 
     if (event->button() == Qt::LeftButton)
     {
         emit clicked();
-
     }
 }
 
 void PushButton::setPressed()
 {
-    if (!isbomb && nearbomb == 0){
+    if (!isbomb && nearbomb == 0)
+    {
         setVisible(false);
-        
     }
-    
 
-    
+    pressed = true;
+    setGraphicsEffect(nullptr);
+    setStyleSheet(
 
-        pressed = true;
-        setGraphicsEffect(nullptr);
-        setStyleSheet(
+        "QPushButton#regularButton {"
+        "   background-color : gray;"
+        "   border-style : outset;"
+        "   border-width : 2px;"
+        "   border-radius : 2.5px;"
+        "   border-color : gray;"
+        "}"
 
-            "QPushButton#regularButton {"
-            "   background-color : gray;"
-            "   border-style : outset;"
-            "   border-width : 2px;"
-            "   border-radius : 2.5px;"
-            "   border-color : gray;"
-            "}"
-            
-            );
+    );
 
-        if (nearbomb > 0)
-        {
-            setText(QString::fromStdString(std::to_string(nearbomb)));
-        }
-        if (isbomb)
-        {
-            setText(QString("B"));
-        }
-    
+    if (nearbomb > 0)
+    {
+        setText(QString::fromStdString(std::to_string(nearbomb)));
+    }
+    if (isbomb)
+    {
+        setText(QString("B"));
+    }
 }
 
 bool PushButton::isPressed()
@@ -111,7 +108,7 @@ bool PushButton::isPressed()
 
 void PushButton::setBombFlag()
 {
-  //2 setText("B");
+    // 2 setText("B");
     isbomb = true;
 }
 
@@ -130,8 +127,8 @@ void PushButton::addNearBomb()
     if (!getBombFlag())
     {
         nearbomb += 1;
-    
-    //setText(QString::fromStdString(std::to_string(nearbomb)));
+
+        // setText(QString::fromStdString(std::to_string(nearbomb)));
     }
 }
 
@@ -140,7 +137,7 @@ void PushButton::resetNearBomb()
     nearbomb = 0;
 }
 
-bool PushButton::getBombFlag()
+bool PushButton::getBombFlag() const
 {
     return isbomb;
 }
@@ -150,7 +147,7 @@ void PushButton::setFlagged()
     flagged = true;
 }
 
-bool PushButton::getFlagged()
+bool PushButton::getFlagged() const
 {
     return flagged;
 }
@@ -160,13 +157,14 @@ void PushButton::resetFlagged()
     flagged = false;
 }
 
-void PushButton::setQuestioned(){
+void PushButton::setQuestioned()
+{
     this->questioned = true;
 }
 
-bool PushButton::isQuestioned(){
+bool PushButton::isQuestioned()
+{
     return this->questioned;
 }
-
 
 PushButton::~PushButton() {}

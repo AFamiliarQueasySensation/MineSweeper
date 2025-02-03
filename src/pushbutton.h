@@ -6,7 +6,6 @@
 #include <iostream>
 #include <QSizePolicy>
 
-
 class PushButton : public QPushButton
 {
 
@@ -20,12 +19,10 @@ private:
     bool questioned;
     QSizePolicy retain;
 
-
 public:
-    explicit PushButton(QWidget *parent=nullptr);
+    explicit PushButton(QWidget *parent = nullptr);
     void setButtonGeometry(QPoint point);
 
-    
     void setPressed();
     bool isPressed();
 
@@ -34,9 +31,9 @@ public:
     int nearBombCount();
     void addNearBomb();
     void resetNearBomb();
-    bool getBombFlag();
+    bool getBombFlag() const;
     void setFlagged();
-    bool getFlagged();
+    bool getFlagged() const;
     void resetFlagged();
     void initializeButton();
 
@@ -45,20 +42,11 @@ public:
 
     ~PushButton();
 
-
 private slots:
     void mouseReleaseEvent(QMouseEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
-  
+
 signals:
     void clicked();
     void clic_droit();
-
-
-
-
-
-
-
-
 };
