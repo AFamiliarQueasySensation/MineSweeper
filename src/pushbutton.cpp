@@ -46,21 +46,25 @@ void PushButton::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::RightButton)
     {
-        if (!getFlagged() && !isQuestioned())
+        if (!pressed)
         {
-            setFlagged();
-            setText("F");
-        }
-        else if (getFlagged() && !isQuestioned())
-        {
-            setQuestioned();
-            this->flagged = false;
-            setText("?");
-        }
-        else
-        {
-            this->questioned = false;
-            setText("");
+
+            if (!getFlagged() && !isQuestioned())
+            {
+                setFlagged();
+                setText("F");
+            }
+            else if (getFlagged() && !isQuestioned())
+            {
+                setQuestioned();
+                this->flagged = false;
+                setText("?");
+            }
+            else
+            {
+                this->questioned = false;
+                setText("");
+            }
         }
     }
 
@@ -91,13 +95,14 @@ void PushButton::setPressed()
 
     );
 
+    if (isbomb)
+    {
+        setStyleSheet("background-image : url(../resources/mine.png)");
+    }
+
     if (nearbomb > 0)
     {
         setText(QString::fromStdString(std::to_string(nearbomb)));
-    }
-    if (isbomb)
-    {
-        setText(QString("B"));
     }
 }
 
@@ -124,11 +129,10 @@ int PushButton::nearBombCount()
 
 void PushButton::addNearBomb()
 {
-    if (!getBombFlag())
+    if (!isbomb)
     {
         nearbomb += 1;
 
-        // setText(QString::fromStdString(std::to_string(nearbomb)));
     }
 }
 
@@ -137,7 +141,7 @@ void PushButton::resetNearBomb()
     nearbomb = 0;
 }
 
-bool PushButton::getBombFlag() const
+bool PushButton::getBombFlag()
 {
     return isbomb;
 }
@@ -147,7 +151,7 @@ void PushButton::setFlagged()
     flagged = true;
 }
 
-bool PushButton::getFlagged() const
+bool PushButton::getFlagged()
 {
     return flagged;
 }

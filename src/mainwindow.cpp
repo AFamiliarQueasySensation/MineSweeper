@@ -7,7 +7,7 @@
 #define LEN_HOR 30
 #define LEN_VER 16
 
-#define MAXIMUM (LEN_HOR * LEN_VER) // ALSO last position in the map
+#define MAXIMUM (LEN_HOR * LEN_VER) // Number of boxes displayed
 
 #define BOMB_COUNT 99
 
@@ -39,9 +39,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(signalMapper, &QSignalMapper::mappedInt, this, &MainWindow::onLeftMouseClicked);
 }
 
-// Death Screne Message Box
+// Displays the lose menu that is just a MessageBox but Qt
 void MainWindow::loseMenu()
 {
+
     QMessageBox msgBox;
     msgBox.setText("You Died");
     msgBox.setInformativeText("Would you like to play again?");
@@ -60,7 +61,7 @@ void MainWindow::loseMenu()
     }
 }
 
-// Win Screne Message Box
+// Displays the win menu but it is just a messagebox but QT
 void MainWindow::winMenu()
 {
     QMessageBox msgBox;
@@ -165,7 +166,7 @@ void MainWindow::randomBombMaker()
     }
 }
 
-// Win by finding how many square and subtracting amount of bombs deployed
+// Subtracts the empty spaces from a counter counting pressed
 inline void MainWindow::checkWin()
 {
     // You win menu
@@ -187,13 +188,13 @@ void MainWindow::findOtherEmptySquares(int random)
             win_counter++;
             push_button_map[random]->setPressed();
             checkWin();
-            // qDebug() << win_counter;
         }
     }
     // Bass
     // You Pressed on a bomb
     if (push_button_map[random]->getBombFlag())
     {
+        push_button_map[random]->setPressed();
         loseMenu();
         return;
     }
