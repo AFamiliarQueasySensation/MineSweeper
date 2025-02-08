@@ -17,6 +17,7 @@ void PushButton::initializeButton()
     setObjectName("regularButton");
     setStyleSheet(
         "QPushButton#regularButton {"
+        "   color : black;"
         "   background-color : white;"
         "   border-style : outset;"
         "   border-width : 2px;"
